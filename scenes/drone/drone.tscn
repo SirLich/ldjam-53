@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwlmal66y0pqe"]
+
+[ext_resource type="Script" path="res://scenes/drone/drone.gd" id="1_0dw7l"]
+[ext_resource type="Texture2D" uid="uid://dxrcmy5n3ujpj" path="res://scenes/drone/drone.png" id="1_pqu5d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i0rko"]
+radius = 30.0
+height = 192.0
+
+[node name="Drone" type="Node2D"]
+script = ExtResource("1_0dw7l")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.250977, 0.250977)
+texture = ExtResource("1_pqu5d")
+
+[node name="Area2D" type="Area2D" parent="Sprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Area2D"]
+position = Vector2(-7.96887, -23.9066)
+rotation = 1.5708
+scale = Vector2(3.98444, 3.98444)
+shape = SubResource("CapsuleShape2D_i0rko")

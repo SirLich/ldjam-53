@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bt7iua1otrdva"]
+
+[ext_resource type="Texture2D" uid="uid://7xy5jtubvjvr" path="res://assets/ground.png" id="1_6nygl"]
+[ext_resource type="Texture2D" uid="uid://dt54gbixfo5mx" path="res://assets/cloud.png" id="2_t87kk"]
+[ext_resource type="Texture2D" uid="uid://bnq1hgvaqhwse" path="res://assets/launcher.png" id="3_oyb78"]
+[ext_resource type="PackedScene" uid="uid://cwlmal66y0pqe" path="res://scenes/drone/drone.tscn" id="4_kgkqh"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Ground" type="Sprite2D" parent="."]
+position = Vector2(957, 836)
+scale = Vector2(1.01758, 1.01758)
+texture = ExtResource("1_6nygl")
+metadata/_edit_lock_ = true
+
+[node name="Cloud" type="Sprite2D" parent="."]
+position = Vector2(1705, 558)
+texture = ExtResource("2_t87kk")
+metadata/_edit_lock_ = true
+
+[node name="Cloud2" type="Sprite2D" parent="."]
+position = Vector2(373, 223)
+texture = ExtResource("2_t87kk")
+metadata/_edit_lock_ = true
+
+[node name="Launcher" type="Sprite2D" parent="."]
+position = Vector2(276, 818)
+texture = ExtResource("3_oyb78")
+
+[node name="Drone" parent="." instance=ExtResource("4_kgkqh")]
+position = Vector2(104, 967)
+rotation = -0.605629

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cltoxd5aa63go"]
+
+[ext_resource type="Texture2D" uid="uid://dui4bu2tstwhu" path="res://scenes/pill/pill.png" id="1_ixho7"]
+
+[node name="Pill" type="Node2D"]
+
+[node name="Pill" type="Sprite2D" parent="."]
+rotation = 0.244346
+scale = Vector2(0.234, 0.234)
+texture = ExtResource("1_ixho7")

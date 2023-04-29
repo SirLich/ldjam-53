@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://x2oc338rv3ul"]
+[gd_scene load_steps=7 format=3 uid="uid://x2oc338rv3ul"]
 
 [ext_resource type="Script" path="res://scenes/tile/tile.gd" id="1_baxb0"]
 [ext_resource type="Texture2D" uid="uid://7xy5jtubvjvr" path="res://assets/ground.png" id="1_gikd8"]
 [ext_resource type="PackedScene" uid="uid://cltoxd5aa63go" path="res://scenes/pill/pill.tscn" id="3_npa77"]
 [ext_resource type="PackedScene" uid="uid://pvqa1wvqcjnb" path="res://scenes/package/package.tscn" id="4_7tyam"]
+[ext_resource type="Texture2D" uid="uid://b1xexggxkheol" path="res://assets/target.png" id="5_yc76t"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_etw2t"]
+radius = 250.0
+height = 1570.0
 
 [node name="Tile" type="Node2D"]
 script = ExtResource("1_baxb0")
@@ -20,3 +25,19 @@ position = Vector2(1080, 632)
 
 [node name="Package" parent="." instance=ExtResource("4_7tyam")]
 position = Vector2(1424, 686)
+
+[node name="Target" type="Node2D" parent="."]
+position = Vector2(1424, 686)
+scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Target"]
+position = Vector2(-1520, 1400)
+scale = Vector2(3.51758, 2.41309)
+texture = ExtResource("5_yc76t")
+
+[node name="Area2D" type="Area2D" parent="Target"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Target/Area2D"]
+position = Vector2(-1560, 1785)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_etw2t")

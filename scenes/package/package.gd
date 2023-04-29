@@ -14,4 +14,4 @@ func _process(delta):
 		side_speed = 0
 		
 	
-	rotation =  -max(side_speed / fall_speed, 0.2)
+	rotation =  -side_speed / 3 / fall_speed

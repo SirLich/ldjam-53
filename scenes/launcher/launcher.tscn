@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1mgyajq1ivqs"]
+
+[ext_resource type="Texture2D" uid="uid://bnq1hgvaqhwse" path="res://assets/launcher.png" id="1_271br"]
+[ext_resource type="Script" path="res://scenes/launcher/launcher.gd" id="1_twho1"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="2_qdql8"]
+
+[node name="Launcher" type="Node2D"]
+position = Vector2(276, 818)
+script = ExtResource("1_twho1")
+
+[node name="PhantomCamera2D" type="Node2D" parent="."]
+script = ExtResource("2_qdql8")
+priority = 1
+zoom = Vector2(1, 1)
+follow_mode = 0
+tween_parameters = null
+inactive_update_mode = 0
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_271br")

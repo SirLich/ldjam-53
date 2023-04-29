@@ -1,7 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwlmal66y0pqe"]
+[gd_scene load_steps=7 format=3 uid="uid://cwlmal66y0pqe"]
 
 [ext_resource type="Script" path="res://scenes/drone/drone.gd" id="1_0dw7l"]
 [ext_resource type="Texture2D" uid="uid://dxrcmy5n3ujpj" path="res://scenes/drone/drone.png" id="1_pqu5d"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="3_s0noo"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_xvibx"]
+
+[sub_resource type="Resource" id="Resource_daekj"]
+script = ExtResource("3_xvibx")
+duration = 3.0
+transition = 1
+ease = 2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i0rko"]
 radius = 30.0
@@ -10,7 +18,18 @@ height = 192.0
 [node name="Drone" type="Node2D"]
 script = ExtResource("1_0dw7l")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Pcam" type="Node2D" parent="."]
+position = Vector2(700, 0)
+script = ExtResource("3_s0noo")
+priority = 0
+zoom = Vector2(1, 1)
+follow_mode = 2
+follow_target = NodePath("..")
+follow_parameters/target_offset = Vector2(700, 0)
+follow_parameters/damping = true
+follow_parameters/damping_value = 10.0
+tween_parameters = SubResource("Resource_daekj")
+inactive_update_mode = 0
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.250977, 0.250977)

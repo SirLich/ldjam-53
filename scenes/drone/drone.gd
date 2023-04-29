@@ -9,6 +9,7 @@ var max_rot = 2
 var launched = false
 
 @onready var pcam : PhantomCamera2D = $Pcam
+@export var world : Node2D
 
 func launch():
 	speed = 1
@@ -29,7 +30,7 @@ func _process(delta):
 		speed = speed * acceleration * delta
 	
 	speed = min(speed, max_speed)
-	translate(get_global_transform().x * delta * speed)
+	world.translate(get_global_transform().x * delta * speed * -1)
 	
 	if launched:
 		var red = global_transform.x

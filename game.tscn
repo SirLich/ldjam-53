@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://bt7iua1otrdva"]
 
-[ext_resource type="Texture2D" uid="uid://7xy5jtubvjvr" path="res://assets/ground.png" id="1_6nygl"]
 [ext_resource type="Script" path="res://ignore_rot.gd" id="2_nm2xj"]
 [ext_resource type="Texture2D" uid="uid://dt54gbixfo5mx" path="res://assets/cloud.png" id="2_t87kk"]
 [ext_resource type="PackedScene" uid="uid://d1mgyajq1ivqs" path="res://scenes/launcher/launcher.tscn" id="4_gdlv2"]
 [ext_resource type="PackedScene" uid="uid://cwlmal66y0pqe" path="res://scenes/drone/drone.tscn" id="4_kgkqh"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_jg1gd"]
+[ext_resource type="PackedScene" uid="uid://dhm8mnufcqcl3" path="res://scenes/floor/floor.tscn" id="6_uwy2k"]
 
 [sub_resource type="Gradient" id="Gradient_irhyx"]
 colors = PackedColorArray(0.00147889, 0.0905844, 0.475441, 1, 0.0874125, 0.698596, 0.809496, 1)
@@ -18,7 +18,7 @@ fill_from = Vector2(0.490385, 0)
 fill_to = Vector2(0.53125, 1)
 
 [sub_resource type="Gradient" id="Gradient_3edvj"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+colors = PackedColorArray(0.0633781, 0.740959, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_bqhyj"]
 gradient = SubResource("Gradient_3edvj")
@@ -28,7 +28,7 @@ width = 5
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(276, 818)
-scale = Vector2(9.66498, 11.7112)
+scale = Vector2(9.28929, 3.18381)
 texture = SubResource("GradientTexture2D_3uf1v")
 script = ExtResource("2_nm2xj")
 gradient = SubResource("GradientTexture1D_bqhyj")
@@ -44,25 +44,24 @@ remote_path = NodePath("../../Background")
 update_rotation = false
 update_scale = false
 
-[node name="Ground" type="Sprite2D" parent="."]
-position = Vector2(957, 836)
-scale = Vector2(1.01758, 1.01758)
-texture = ExtResource("1_6nygl")
-metadata/_edit_lock_ = true
+[node name="World" type="Node2D" parent="."]
 
-[node name="Cloud" type="Sprite2D" parent="."]
+[node name="Cloud" type="Sprite2D" parent="World"]
 position = Vector2(1705, 558)
 texture = ExtResource("2_t87kk")
 metadata/_edit_lock_ = true
 
-[node name="Cloud2" type="Sprite2D" parent="."]
+[node name="Cloud2" type="Sprite2D" parent="World"]
 position = Vector2(373, 223)
 texture = ExtResource("2_t87kk")
 metadata/_edit_lock_ = true
 
-[node name="Launcher" parent="." node_paths=PackedStringArray("drone") instance=ExtResource("4_gdlv2")]
-drone = NodePath("../Drone")
+[node name="Launcher" parent="World" node_paths=PackedStringArray("drone") instance=ExtResource("4_gdlv2")]
+drone = NodePath("../../Drone")
 
-[node name="Drone" parent="." instance=ExtResource("4_kgkqh")]
+[node name="Floor" parent="World" instance=ExtResource("6_uwy2k")]
+
+[node name="Drone" parent="." node_paths=PackedStringArray("world") instance=ExtResource("4_kgkqh")]
 position = Vector2(125, 957)
 rotation = -0.572468
+world = NodePath("../World")

@@ -1,0 +1,181 @@
+[gd_scene load_steps=16 format=3 uid="uid://pvqa1wvqcjnb"]
+
+[ext_resource type="Script" path="res://scenes/package/package.gd" id="1_5gtdt"]
+[ext_resource type="Texture2D" uid="uid://bvr843p7uvu6y" path="res://scenes/package/parachute.png" id="1_a0gae"]
+[ext_resource type="Texture2D" uid="uid://cjdq36dbkowag" path="res://scenes/package/package.png" id="2_53pns"]
+
+[sub_resource type="Animation" id="Animation_k172s"]
+resource_name = "sway"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Box:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Box:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Box:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0756944, -0.167348, 0.0756944]
+}
+
+[sub_resource type="Animation" id="Animation_8lhjd"]
+resource_name = "Open"
+length = 0.3529
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Visuals/Parachute:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.2, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_giule"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Visuals/Parachute:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Box:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_53pns")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Box:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Box:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0756944]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5lcn0"]
+_data = {
+"Open": SubResource("Animation_8lhjd"),
+"RESET": SubResource("Animation_giule"),
+"sway": SubResource("Animation_k172s")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u1v7d"]
+animation = &"Open"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v42bj"]
+animation = &"sway"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_87x64"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kkrrx"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_umlu7"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fl5sy"]
+states/End/position = Vector2(695, 100)
+states/Open/node = SubResource("AnimationNodeAnimation_u1v7d")
+states/Open/position = Vector2(268, 110)
+states/Start/position = Vector2(112, 110)
+states/sway/node = SubResource("AnimationNodeAnimation_v42bj")
+states/sway/position = Vector2(449, 100)
+transitions = ["Start", "Open", SubResource("AnimationNodeStateMachineTransition_87x64"), "Open", "sway", SubResource("AnimationNodeStateMachineTransition_kkrrx"), "sway", "End", SubResource("AnimationNodeStateMachineTransition_umlu7")]
+graph_offset = Vector2(-97, -102)
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_80082"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hnpp4"]
+radius = 226.374
+
+[node name="Package" type="Node2D"]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_5gtdt")
+
+[node name="Open" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Visuals")
+autoplay = "Open"
+libraries = {
+"": SubResource("AnimationLibrary_5lcn0")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Open"]
+tree_root = SubResource("AnimationNodeStateMachine_fl5sy")
+anim_player = NodePath("..")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_80082")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_hnpp4")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Parachute" type="Sprite2D" parent="Visuals"]
+scale = Vector2(0.2, 1)
+texture = ExtResource("1_a0gae")
+
+[node name="Box" type="Sprite2D" parent="Visuals"]
+rotation = 0.0756944
+texture = ExtResource("2_53pns")

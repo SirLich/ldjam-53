@@ -9,6 +9,7 @@ var max_rot = 2
 var launched = false
 
 @onready var pcam : PhantomCamera2D = $Pcam
+@export var package_scene : PackedScene
 @export var world : Node2D
 
 func launch():
@@ -25,6 +26,13 @@ func launch():
 func _ready():
 	pass # Replace with function body.
 
+func _input(event):
+	if launched and event.is_action_released("spacebar"):
+		var new_package = package_scene.instantiate()
+		new_package.global_position = global_position
+		world.add_child(new_package)
+		new_package.global_position = global_position
+	
 func _process(delta):
 	if acceleration:
 		speed = speed * acceleration * delta

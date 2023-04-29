@@ -1,18 +1,48 @@
-[gd_scene load_steps=6 format=3 uid="uid://bt7iua1otrdva"]
+[gd_scene load_steps=11 format=3 uid="uid://bt7iua1otrdva"]
 
 [ext_resource type="Texture2D" uid="uid://7xy5jtubvjvr" path="res://assets/ground.png" id="1_6nygl"]
+[ext_resource type="Script" path="res://ignore_rot.gd" id="2_nm2xj"]
 [ext_resource type="Texture2D" uid="uid://dt54gbixfo5mx" path="res://assets/cloud.png" id="2_t87kk"]
 [ext_resource type="PackedScene" uid="uid://d1mgyajq1ivqs" path="res://scenes/launcher/launcher.tscn" id="4_gdlv2"]
 [ext_resource type="PackedScene" uid="uid://cwlmal66y0pqe" path="res://scenes/drone/drone.tscn" id="4_kgkqh"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_jg1gd"]
 
+[sub_resource type="Gradient" id="Gradient_irhyx"]
+colors = PackedColorArray(0.00147889, 0.0905844, 0.475441, 1, 0.0874125, 0.698596, 0.809496, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3uf1v"]
+gradient = SubResource("Gradient_irhyx")
+width = 256
+height = 500
+fill_from = Vector2(0.490385, 0)
+fill_to = Vector2(0.53125, 1)
+
+[sub_resource type="Gradient" id="Gradient_3edvj"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bqhyj"]
+gradient = SubResource("Gradient_3edvj")
+width = 5
+
 [node name="Game" type="Node2D"]
 
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(276, 818)
+scale = Vector2(9.66498, 11.7112)
+texture = SubResource("GradientTexture2D_3uf1v")
+script = ExtResource("2_nm2xj")
+gradient = SubResource("GradientTexture1D_bqhyj")
+
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(129.659, 384.279)
+position = Vector2(276, 818)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
 script = ExtResource("5_jg1gd")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Camera2D"]
+remote_path = NodePath("../../Background")
+update_rotation = false
+update_scale = false
 
 [node name="Ground" type="Sprite2D" parent="."]
 position = Vector2(957, 836)
@@ -34,5 +64,5 @@ metadata/_edit_lock_ = true
 drone = NodePath("../Drone")
 
 [node name="Drone" parent="." instance=ExtResource("4_kgkqh")]
-position = Vector2(112, 943)
-rotation = -0.605629
+position = Vector2(125, 957)
+rotation = -0.572468

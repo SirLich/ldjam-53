@@ -1,10 +1,56 @@
-[gd_scene load_steps=2 format=3 uid="uid://cltoxd5aa63go"]
+[gd_scene load_steps=5 format=3 uid="uid://cltoxd5aa63go"]
 
 [ext_resource type="Texture2D" uid="uid://dui4bu2tstwhu" path="res://scenes/pill/pill.png" id="1_ixho7"]
+
+[sub_resource type="Animation" id="Animation_avxnu"]
+resource_name = "float"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pill:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1.10218, 1, 1),
+"update": 0,
+"values": [Vector2(1, -3), Vector2(1, -30), Vector2(1, -3)]
+}
+
+[sub_resource type="Animation" id="Animation_h86uj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pill:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mwadd"]
+_data = {
+"RESET": SubResource("Animation_h86uj"),
+"float": SubResource("Animation_avxnu")
+}
 
 [node name="Pill" type="Node2D"]
 
 [node name="Pill" type="Sprite2D" parent="."]
+position = Vector2(1, -1)
 rotation = 0.244346
-scale = Vector2(0.234, 0.234)
+scale = Vector2(0.261185, 0.261185)
 texture = ExtResource("1_ixho7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "float"
+speed_scale = 0.5
+libraries = {
+"": SubResource("AnimationLibrary_mwadd")
+}

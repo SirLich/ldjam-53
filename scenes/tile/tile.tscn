@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://x2oc338rv3ul"]
+
+[ext_resource type="Script" path="res://scenes/tile/tile.gd" id="1_baxb0"]
+[ext_resource type="Texture2D" uid="uid://7xy5jtubvjvr" path="res://assets/ground.png" id="1_gikd8"]
+[ext_resource type="PackedScene" uid="uid://cltoxd5aa63go" path="res://scenes/pill/pill.tscn" id="3_npa77"]
+
+[node name="Tile" type="Node2D"]
+script = ExtResource("1_baxb0")
+
+[node name="Ground" type="Sprite2D" parent="."]
+position = Vector2(958, 824)
+texture = ExtResource("1_gikd8")
+
+[node name="Pill" parent="." instance=ExtResource("3_npa77")]
+position = Vector2(969, 726)
+
+[node name="Pill2" parent="." instance=ExtResource("3_npa77")]
+position = Vector2(1080, 632)
+
+[node name="Pill3" parent="." instance=ExtResource("3_npa77")]
+position = Vector2(1154, 743)

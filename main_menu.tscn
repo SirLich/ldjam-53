@@ -121,6 +121,7 @@ texture = ExtResource("12_kyong")
 expand_mode = 1
 
 [node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 1194.0
 offset_top = 452.0
 offset_right = 1593.0

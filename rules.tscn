@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://xk6e8v310eq8"]
+[gd_scene load_steps=13 format=3 uid="uid://xk6e8v310eq8"]
 
 [ext_resource type="Script" path="res://rules.gd" id="1_b7c8v"]
 [ext_resource type="Texture2D" uid="uid://c34glp2hnyevg" path="res://assets/back_button.png" id="2_jnxf3"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dui4bu2tstwhu" path="res://scenes/pill/pill.png" id="4_wqf7j"]
 [ext_resource type="Texture2D" uid="uid://bxw1dkwofoorv" path="res://assets/package_icon.png" id="5_yq7ib"]
 [ext_resource type="Texture2D" uid="uid://b1xexggxkheol" path="res://assets/target.png" id="6_lyjge"]
+[ext_resource type="Texture2D" uid="uid://bi0k7p0moyc78" path="res://assets/heigh_meter.png" id="10_feo0f"]
 [ext_resource type="Texture2D" uid="uid://doh747oe53rpj" path="res://assets/wind_frame_one.png" id="10_ks6aw"]
 
 [node name="Rules" type="Control"]
@@ -36,6 +37,11 @@ layout_mode = 2
 text = "Use SPACEBAR to drop packages on the target."
 icon = ExtResource("5_yq7ib")
 
+[node name="Boost" parent="VBoxContainer" instance=ExtResource("3_7qont")]
+layout_mode = 2
+text = "Boost with 'LEFT CLICK'"
+icon = ExtResource("4_iiie4")
+
 [node name="Target" parent="VBoxContainer" instance=ExtResource("3_7qont")]
 layout_mode = 2
 text = "Here is the target."
@@ -44,11 +50,6 @@ icon = ExtResource("6_lyjge")
 [node name="Speed" parent="VBoxContainer" instance=ExtResource("3_7qont")]
 layout_mode = 2
 text = "Watch your speed carefully. Climbing causes lots of drag, so don't get stuck low-and-slow!"
-
-[node name="Boost" parent="VBoxContainer" instance=ExtResource("3_7qont")]
-layout_mode = 2
-text = "Boost with 'LEFT CLICK'"
-icon = ExtResource("4_iiie4")
 
 [node name="Battery" parent="VBoxContainer" instance=ExtResource("3_7qont")]
 layout_mode = 2
@@ -65,10 +66,10 @@ layout_mode = 2
 text = "Wind provides a positive and negative boost."
 icon = ExtResource("10_ks6aw")
 
-[node name="Wind" parent="VBoxContainer" instance=ExtResource("3_7qont")]
+[node name="Height" parent="VBoxContainer" instance=ExtResource("3_7qont")]
 layout_mode = 2
-text = "Wind provides a positive and negative boost."
-icon = ExtResource("10_ks6aw")
+text = "Don't fly too high or the FAA will remotely shut you down."
+icon = ExtResource("10_feo0f")
 
 [node name="BackButton" type="TextureButton" parent="."]
 layout_mode = 0

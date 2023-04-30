@@ -21,6 +21,7 @@ func _on_how_to_button_button_up():
 
 
 func _on_play_button_pressed():
+	Global.start()
 	click_sound.play()
 	get_tree().change_scene_to_file("res://game.tscn")
 

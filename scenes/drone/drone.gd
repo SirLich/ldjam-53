@@ -8,7 +8,7 @@ var STALL_FRICTION = 20
 var ANGLE_FRICTION = 150
 var STALL_SPEED = 200
 var GRAVITY = 150
-var STALL_GRAVITY = 800
+var STALL_GRAVITY = 2000
 var BOOST_SPEED = 275
 var BATTERY_DRAIN = 25
 
@@ -73,7 +73,7 @@ func _input(event):
 			
 
 func start_boost():
-	if not boost and launched and Global.battery > 0:
+	if not boost and launched and not is_stalling and Global.battery > 0:
 		boost = true
 		audio.volume_db = 15
 		cpu_particles_2d.emitting = true
@@ -90,12 +90,17 @@ func die():
 
 
 func _process(delta):
+	if Global.get_height() < -3000:
+		
+		is_stalling = true
+		
 	for ar in area.get_overlapping_areas():
 		if ar.is_in_group("ground"):
 			die()
 			
 		if ar.is_in_group("battery"):
 			Global.battery += 10
+			Global.battery = clamp(Global.battery, 0, 100)
 			battery_sound.play()
 			ar.owner.queue_free()
 			
@@ -125,9 +130,11 @@ func _process(delta):
 			speed += BOOST_SPEED * delta
 			
 		if speed < STALL_SPEED:
-				is_stalling = true
-				GRAVITY = STALL_GRAVITY
-				speed -= (STALL_FRICTION * delta)
+			is_stalling = true
+		
+		if is_stalling:
+			GRAVITY = STALL_GRAVITY
+			speed -= (STALL_FRICTION * delta)
 				
 	speed = clamp(speed, 0,  Global.MAX_SPEED)
 	Global.speed = speed

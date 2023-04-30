@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwlmal66y0pqe"]
+[gd_scene load_steps=11 format=3 uid="uid://cwlmal66y0pqe"]
 
 [ext_resource type="Script" path="res://scenes/drone/drone.gd" id="1_0dw7l"]
 [ext_resource type="Texture2D" uid="uid://dxrcmy5n3ujpj" path="res://scenes/drone/drone.png" id="1_pqu5d"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="3_s0noo"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_xvibx"]
 [ext_resource type="AudioStream" uid="uid://wrdc3b1wwf2a" path="res://sounds/untitled.wav" id="6_6mjga"]
+[ext_resource type="Texture2D" uid="uid://h851x0yitllx" path="res://assets/smoke.png" id="7_o7422"]
 
 [sub_resource type="Resource" id="Resource_daekj"]
 script = ExtResource("3_xvibx")
@@ -16,6 +17,11 @@ ease = 2
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i0rko"]
 radius = 18.9999
 height = 213.999
+
+[sub_resource type="Curve" id="Curve_jqj2r"]
+max_value = 2.0
+_data = [Vector2(0.00171233, 0.227273), 0.0, 0.0, 0, 0, Vector2(0.77911, 2), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Drone" type="Node2D"]
 script = ExtResource("1_0dw7l")
@@ -50,3 +56,18 @@ texture = ExtResource("1_pqu5d")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_6mjga")
 pitch_scale = 0.52
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-103, -1)
+emitting = false
+amount = 75
+texture = ExtResource("7_o7422")
+direction = Vector2(-1, 0)
+spread = 45.5
+gravity = Vector2(0, 0)
+initial_velocity_max = 28.88
+angular_velocity_min = -263.53
+angular_velocity_max = 503.53
+scale_amount_curve = SubResource("Curve_jqj2r")
+hue_variation_min = -0.09
+hue_variation_max = 0.81

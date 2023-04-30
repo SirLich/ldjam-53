@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://x2oc338rv3ul"]
+[gd_scene load_steps=10 format=3 uid="uid://x2oc338rv3ul"]
 
 [ext_resource type="Script" path="res://scenes/tile/tile.gd" id="1_baxb0"]
 [ext_resource type="PackedScene" uid="uid://cltoxd5aa63go" path="res://scenes/pill/pill.tscn" id="3_npa77"]
-[ext_resource type="PackedScene" uid="uid://pvqa1wvqcjnb" path="res://scenes/package/package.tscn" id="4_7tyam"]
 [ext_resource type="Texture2D" uid="uid://dq3od6ekaa1ac" path="res://assets/ground_1.png" id="5_iqcxt"]
 [ext_resource type="Texture2D" uid="uid://b1xexggxkheol" path="res://assets/target.png" id="5_yc76t"]
 
@@ -37,9 +36,6 @@ position = Vector2(972, -249)
 
 [node name="Pill2" parent="." instance=ExtResource("3_npa77")]
 position = Vector2(1083, -343)
-
-[node name="Package" parent="." instance=ExtResource("4_7tyam")]
-position = Vector2(1427, -289)
 
 [node name="Target" type="Node2D" parent="."]
 position = Vector2(1427, -289)

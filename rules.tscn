@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://xk6e8v310eq8"]
+
+[ext_resource type="Texture2D" uid="uid://2lt4wvumsq6r" path="res://assets/rules.png" id="1_7fj7p"]
+[ext_resource type="Script" path="res://rules.gd" id="1_b7c8v"]
+[ext_resource type="Texture2D" uid="uid://c34glp2hnyevg" path="res://assets/back_button.png" id="2_jnxf3"]
+[ext_resource type="Texture2D" uid="uid://orulf3trderm" path="res://assets/back_button_selected.png" id="3_x4rbj"]
+
+[node name="Rules" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b7c8v")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_7fj7p")
+
+[node name="BackButton" type="TextureButton" parent="."]
+offset_left = -148.0
+offset_top = 933.0
+offset_right = 364.0
+offset_bottom = 1061.0
+texture_normal = ExtResource("2_jnxf3")
+texture_hover = ExtResource("3_x4rbj")
+
+[connection signal="button_up" from="BackButton" to="." method="_on_back_button_button_up"]

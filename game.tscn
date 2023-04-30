@@ -41,9 +41,6 @@ position = Vector2(373, 223)
 texture = ExtResource("2_t87kk")
 metadata/_edit_lock_ = true
 
-[node name="Launcher" parent="World" node_paths=PackedStringArray("drone") instance=ExtResource("4_gdlv2")]
-drone = NodePath("../../Drone")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Speedomiter" type="Control" parent="CanvasLayer"]
@@ -82,11 +79,12 @@ expand_mode = 1
 [node name="HeightMeter" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 22.0
-offset_top = 56.0
-offset_right = 62.0
-offset_bottom = 96.0
+offset_left = 33.0
+offset_top = 63.0
+offset_right = 73.0
+offset_bottom = 103.0
 scale = Vector2(0.783563, 0.783563)
+metadata/_edit_group_ = true
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/HeightMeter"]
 layout_mode = 0
@@ -116,10 +114,10 @@ scale = Vector2(0.61, 0.61)
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Battery"]
 layout_mode = 0
-offset_left = -22.9508
-offset_top = 13.1147
-offset_right = 489.049
-offset_bottom = 200.115
+offset_left = -62.2951
+offset_top = 9.83614
+offset_right = 449.705
+offset_bottom = 196.836
 value = 25.0
 texture_over = ExtResource("11_1tgmw")
 texture_progress = ExtResource("12_xpfe3")
@@ -144,3 +142,6 @@ position = Vector2(125, 957)
 rotation = -0.572468
 world = NodePath("../World")
 metadata/_edit_lock_ = true
+
+[node name="Launcher" parent="." node_paths=PackedStringArray("drone") instance=ExtResource("4_gdlv2")]
+drone = NodePath("../Drone")

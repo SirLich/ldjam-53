@@ -2,14 +2,14 @@ extends Node2D
 class_name Drone
 
 # Constants
-var ROTATION_SPEED = 1
-var FRICTION = 50
+var ROTATION_SPEED = 2
+var FRICTION = 75
 var STALL_FRICTION = 20
 var ANGLE_FRICTION = 150
 var STALL_SPEED = 200
 var GRAVITY = 150
 var STALL_GRAVITY = 800
-var BOOST_SPEED = 500
+var BOOST_SPEED = 175
 var BATTERY_DRAIN = 25
 
 # Variables
@@ -21,7 +21,8 @@ var boost = false
 var current_speed = 0
 
 @onready var audio = $AudioStreamPlayer2D
-
+@onready var cpu_particles_2d = $CPUParticles2D
+	
 @onready var area = $Area
 @onready var pcam : PhantomCamera2D = $Pcam
 @export var package_scene : PackedScene
@@ -61,12 +62,15 @@ func start_boost():
 	if not boost and Global.battery > 0:
 		boost = true
 		audio.volume_db = 15
-	
+		cpu_particles_2d.emitting = true
+		
 func stop_boost():
 	if boost:
+		cpu_particles_2d.emitting = false
 		boost = false
 		audio.volume_db = 1
-	
+
+
 func _process(delta):
 	for ar in area.get_overlapping_areas():
 		if ar.is_in_group("ground"):

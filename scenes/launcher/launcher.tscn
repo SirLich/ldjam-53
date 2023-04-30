@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1mgyajq1ivqs"]
+[gd_scene load_steps=6 format=3 uid="uid://d1mgyajq1ivqs"]
 
 [ext_resource type="Texture2D" uid="uid://bnq1hgvaqhwse" path="res://assets/launcher.png" id="1_271br"]
 [ext_resource type="Script" path="res://scenes/launcher/launcher.gd" id="1_twho1"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="2_qdql8"]
 [ext_resource type="AudioStream" uid="uid://crqa18fonqsw5" path="res://sounds/launch.wav" id="4_e1pw1"]
+[ext_resource type="Texture2D" uid="uid://b567n46fqv0ra" path="res://assets/space_hint.png" id="5_fqf52"]
 
 [node name="Launcher" type="Node2D"]
 position = Vector2(276, 818)
@@ -24,3 +25,7 @@ texture = ExtResource("1_271br")
 stream = ExtResource("4_e1pw1")
 volume_db = 3.822
 pitch_scale = 0.21
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, 357)
+texture = ExtResource("5_fqf52")

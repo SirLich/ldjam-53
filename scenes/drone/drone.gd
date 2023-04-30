@@ -58,6 +58,7 @@ func _process(delta):
 				
 	speed = clamp(speed, 0,  Global.MAX_SPEED)
 	Global.speed = speed
+	Global.height = global_position.y
 		
 	translate(get_global_transform().x * delta * speed)
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bt7iua1otrdva"]
+[gd_scene load_steps=18 format=3 uid="uid://bt7iua1otrdva"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_wrd2u"]
 [ext_resource type="Script" path="res://ignore_rot.gd" id="2_nm2xj"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://x2oc338rv3ul" path="res://scenes/tile/tile.tscn" id="7_vw8o2"]
 [ext_resource type="Texture2D" uid="uid://ch24t7mf2q2xy" path="res://assets/dial.png" id="9_2x77h"]
 [ext_resource type="Script" path="res://hud/speed_control.gd" id="9_hkyy8"]
+[ext_resource type="Texture2D" uid="uid://bi0k7p0moyc78" path="res://assets/heigh_meter.png" id="11_5vc2e"]
+[ext_resource type="Texture2D" uid="uid://c3cmnkaslp05y" path="res://assets/heigh_meter_dial.png" id="12_ck1gl"]
+[ext_resource type="Script" path="res://hud/HeighDial.gd" id="13_f0bqv"]
 
 [sub_resource type="Gradient" id="Gradient_irhyx"]
 colors = PackedColorArray(0.00147889, 0.0905844, 0.475441, 1, 0.0874125, 0.698596, 0.809496, 1)
@@ -33,6 +36,7 @@ script = ExtResource("1_wrd2u")
 tile_length = 1920.0
 
 [node name="Background" type="Sprite2D" parent="." node_paths=PackedStringArray("world")]
+visible = false
 position = Vector2(276, 818)
 scale = Vector2(9.28929, 3.18381)
 texture = SubResource("GradientTexture2D_3uf1v")
@@ -61,7 +65,6 @@ world = NodePath("../World")
 [node name="Cloud" type="Sprite2D" parent="World"]
 position = Vector2(1705, 558)
 texture = ExtResource("2_t87kk")
-metadata/_edit_lock_ = true
 
 [node name="Cloud2" type="Sprite2D" parent="World"]
 position = Vector2(373, 223)
@@ -70,14 +73,6 @@ metadata/_edit_lock_ = true
 
 [node name="Launcher" parent="World" node_paths=PackedStringArray("drone") instance=ExtResource("4_gdlv2")]
 drone = NodePath("../../Drone")
-
-[node name="Tile1" parent="World" instance=ExtResource("7_vw8o2")]
-position = Vector2(-1920, 0)
-
-[node name="Tile2" parent="World" instance=ExtResource("7_vw8o2")]
-
-[node name="Tile3" parent="World" instance=ExtResource("7_vw8o2")]
-position = Vector2(1920, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -113,3 +108,38 @@ offset_right = 141.0
 offset_bottom = 16.0
 texture = ExtResource("9_2x77h")
 expand_mode = 1
+
+[node name="HeightMeter" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 22.0
+offset_top = 56.0
+offset_right = 62.0
+offset_bottom = 96.0
+scale = Vector2(0.783563, 0.783563)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HeightMeter"]
+layout_mode = 0
+offset_left = -97.0
+offset_top = 148.0
+offset_right = 470.0
+offset_bottom = 715.0
+texture = ExtResource("11_5vc2e")
+
+[node name="HeighDial" type="TextureRect" parent="CanvasLayer/HeightMeter"]
+layout_mode = 0
+offset_left = -97.0
+offset_top = 148.0
+offset_right = 470.0
+offset_bottom = 715.0
+texture = ExtResource("12_ck1gl")
+script = ExtResource("13_f0bqv")
+
+[node name="Tile" parent="." instance=ExtResource("7_vw8o2")]
+position = Vector2(5, 1089)
+
+[node name="Tile2" parent="." instance=ExtResource("7_vw8o2")]
+position = Vector2(-1869, 1094)
+
+[node name="Tile3" parent="." instance=ExtResource("7_vw8o2")]
+position = Vector2(1918, 1084)

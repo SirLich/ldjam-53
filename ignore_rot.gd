@@ -5,7 +5,7 @@ extends Sprite2D
 var range = 5
 
 func height_percentage():
-	return clamp(-world.global_position.y / Global.max_height, 0, 1)
+	return clamp(-world.global_position.y / Global.MAX_HEIGHT, 0, 1)
 	
 	
 func _process(delta):

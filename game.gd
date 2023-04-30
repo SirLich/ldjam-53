@@ -20,5 +20,6 @@ func _process(delta):
 		
 		var copy = load("res://scenes/tile/tile.tscn").instantiate()
 		add_sibling(copy)
+		copy.global_position.y = 0
 		copy.global_position.x = snapped(get_distance() + tile_width, tile_width)
  

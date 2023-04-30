@@ -122,6 +122,11 @@ offset_bottom = 779.0
 layout_mode = 2
 text = "Climbing causes lots of drag, so don't get stuck low-and-slow!"
 
+[node name="Height" parent="Control3/VBoxContainer" instance=ExtResource("3_7qont")]
+layout_mode = 2
+text = "Don't fly too high or the FAA will remotely shut you down."
+icon = ExtResource("10_feo0f")
+
 [node name="Battery" parent="Control3/VBoxContainer" instance=ExtResource("3_7qont")]
 layout_mode = 2
 text = "There is more energy higher up. Collect speed high, then drop down to deliver packages."
@@ -131,11 +136,6 @@ icon = ExtResource("4_qiif4")
 layout_mode = 2
 text = "Wind provides a positive and negative boost."
 icon = ExtResource("10_ks6aw")
-
-[node name="Height" parent="Control3/VBoxContainer" instance=ExtResource("3_7qont")]
-layout_mode = 2
-text = "Don't fly too high or the FAA will remotely shut you down."
-icon = ExtResource("10_feo0f")
 
 [node name="BackButton" type="TextureButton" parent="."]
 layout_mode = 0

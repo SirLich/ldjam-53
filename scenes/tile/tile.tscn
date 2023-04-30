@@ -72,7 +72,7 @@ to_spawn = Array[PackedScene]([ExtResource("3_npa77"), ExtResource("8_bohok")])
 chance = 0.2
 
 [node name="Wind3" parent="." instance=ExtResource("2_8am8l")]
-position = Vector2(989, -3023)
+position = Vector2(997, -3025)
 to_spawn = Array[PackedScene]([ExtResource("8_u6gkk"), ExtResource("9_arwwp"), ExtResource("9_arwwp")])
 chance = 0.5
 
@@ -80,11 +80,6 @@ chance = 0.5
 position = Vector2(553, -252)
 to_spawn = Array[PackedScene]([ExtResource("8_u6gkk"), ExtResource("9_arwwp")])
 chance = 0.5
-
-[node name="Target_Location" parent="." instance=ExtResource("2_8am8l")]
-position = Vector2(1477, -90)
-to_spawn = Array[PackedScene]([ExtResource("5_dbpag"), ExtResource("9_7n708"), ExtResource("5_dbpag")])
-chance = 0.4
 
 [node name="Spawner3" parent="." instance=ExtResource("2_8am8l")]
 position = Vector2(1537, -1202)
@@ -131,12 +126,18 @@ position = Vector2(591, -2059)
 to_spawn = Array[PackedScene]([ExtResource("3_npa77")])
 chance = 0.2
 
+[node name="Wind4" parent="." instance=ExtResource("2_8am8l")]
+position = Vector2(1876, -6078)
+to_spawn = Array[PackedScene]([ExtResource("8_u6gkk"), ExtResource("9_arwwp"), ExtResource("9_arwwp")])
+chance = 0.5
+
 [node name="Wind2" parent="." instance=ExtResource("2_8am8l")]
 position = Vector2(1440, -3307)
 to_spawn = Array[PackedScene]([ExtResource("8_u6gkk"), ExtResource("9_arwwp")])
 chance = 0.5
 
-[node name="Wind" parent="Wind2" instance=ExtResource("2_8am8l")]
-position = Vector2(436, -2771)
-to_spawn = Array[PackedScene]([ExtResource("8_u6gkk"), ExtResource("9_arwwp"), ExtResource("9_arwwp")])
-chance = 0.5
+[node name="Target_Location" parent="." instance=ExtResource("2_8am8l")]
+position = Vector2(1477, -90)
+gizmo_extents = 130.5
+to_spawn = Array[PackedScene]([ExtResource("5_dbpag"), ExtResource("9_7n708")])
+chance = 0.6

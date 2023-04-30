@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2rsa18r8ma8c"]
+[gd_scene load_steps=5 format=3 uid="uid://c2rsa18r8ma8c"]
 
 [ext_resource type="Script" path="res://global.gd" id="1_0nu12"]
+[ext_resource type="AudioStream" uid="uid://c8lltxgu3vooy" path="res://sounds/crash_package.wav" id="2_i3mhh"]
+[ext_resource type="AudioStream" uid="uid://cyadsxrvafiyw" path="res://sounds/death.wav" id="2_l58ld"]
+[ext_resource type="AudioStream" uid="uid://b7g0njuieiqcn" path="res://sounds/packace_land.wav" id="2_tfu16"]
 
 [node name="Global" type="Node2D"]
 script = ExtResource("1_0nu12")
+
+[node name="PackageCrash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_i3mhh")
+
+[node name="PackageLand" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_tfu16")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_l58ld")

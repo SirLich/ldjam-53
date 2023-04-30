@@ -9,5 +9,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if global_position.x < -3000:
+	if Global.distance - global_position.x > 4000:
 		queue_free()

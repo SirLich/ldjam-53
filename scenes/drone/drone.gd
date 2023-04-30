@@ -3,14 +3,15 @@ class_name Drone
 
 # Constants
 var ROTATION_SPEED = 2
-var FRICTION = 75
+var FRICTION = 80
 var STALL_FRICTION = 20
 var ANGLE_FRICTION = 150
 var STALL_SPEED = 200
 var GRAVITY = 150
 var STALL_GRAVITY = 2000
 var BOOST_SPEED = 275
-var BATTERY_DRAIN = 25
+var BATTERY_DRAIN = 20
+var EXTRA_ANGLE = 0.25
 
 var WIND_BOOST = 300
 var NEGATIVE_WIND = 450
@@ -30,6 +31,7 @@ var drop_delay = false
 @onready var cpu_particles_2d = $CPUParticles2D
 @onready var battery_sound = $BatterySound
 @onready var drop_sound = $DropSound
+@onready var pickup_sound = $PickupSound
 
 @onready var area = $Area
 @onready var pcam : PhantomCamera2D = $Pcam
@@ -114,7 +116,7 @@ func _process(delta):
 			
 		if ar.is_in_group("pickup"):
 			Global.packages += 3
-			# battery_sound.play()
+			pickup_sound.play()
 			ar.owner.queue_free()
 			
 		if ar.is_in_group("wind_positive"):
@@ -129,7 +131,7 @@ func _process(delta):
 	if Global.battery < 0:
 		stop_boost()
 		
-	var angle = global_rotation + 0.2
+	var angle = global_rotation + EXTRA_ANGLE
 	if launched:
 		speed -= FRICTION * delta
 		speed += ANGLE_FRICTION * delta * angle
@@ -147,6 +149,7 @@ func _process(delta):
 	speed = clamp(speed, 0,  Global.MAX_SPEED)
 	Global.speed = speed
 	Global.height = global_position.y
+	Global.distance = global_position.x
 		
 	translate(get_global_transform().x * delta * speed)
 	

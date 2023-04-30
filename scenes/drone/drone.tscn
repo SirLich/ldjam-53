@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cwlmal66y0pqe"]
+[gd_scene load_steps=18 format=3 uid="uid://cwlmal66y0pqe"]
 
 [ext_resource type="Script" path="res://scenes/drone/drone.gd" id="1_0dw7l"]
 [ext_resource type="Texture2D" uid="uid://dxrcmy5n3ujpj" path="res://scenes/drone/drone.png" id="1_pqu5d"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://bmtpgnc18h1uv" path="res://sounds/battery_2.wav" id="9_utdgr"]
 [ext_resource type="AudioStream" uid="uid://crj0k6lan5two" path="res://sounds/battery_3.wav" id="10_mgasa"]
 [ext_resource type="AudioStream" uid="uid://bh5iu3e2311a8" path="res://sounds/no.wav" id="11_nc4fc"]
+[ext_resource type="AudioStream" uid="uid://bjsjfj8j8p6o2" path="res://sounds/pickup.wav" id="11_neqek"]
 [ext_resource type="AudioStream" uid="uid://b1mck1k7l5alt" path="res://sounds/drop.wav" id="12_vncgj"]
 
 [sub_resource type="Resource" id="Resource_daekj"]
@@ -88,6 +89,9 @@ hue_variation_max = 0.81
 
 [node name="BatterySound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_nyd6b")
+
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_neqek")
 
 [node name="NoSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_nc4fc")

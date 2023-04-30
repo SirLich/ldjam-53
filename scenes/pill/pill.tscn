@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cltoxd5aa63go"]
+[gd_scene load_steps=3 format=3 uid="uid://cltoxd5aa63go"]
 
 [ext_resource type="Texture2D" uid="uid://onsjqv8qboos" path="res://assets/floating_battery.png" id="1_8rbnp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2myds"]
+radius = 39.2046
 
 [node name="Pill" type="Node2D"]
 
@@ -9,3 +12,8 @@ position = Vector2(1, -1)
 rotation = 0.244346
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_8rbnp")
+
+[node name="Area2D" type="Area2D" parent="." groups=["battery"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2myds")

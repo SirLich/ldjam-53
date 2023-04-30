@@ -71,6 +71,10 @@ func _process(delta):
 	for ar in area.get_overlapping_areas():
 		if ar.is_in_group("ground"):
 			print("DEAD")
+			
+		if ar.is_in_group("battery"):
+			Global.battery += 10
+			ar.owner.queue_free()
 	
 	if boost:
 		Global.battery -= BATTERY_DRAIN * delta

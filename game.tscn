@@ -103,13 +103,13 @@ texture = ExtResource("12_ck1gl")
 script = ExtResource("13_f0bqv")
 
 [node name="Tile" parent="." instance=ExtResource("7_vw8o2")]
-position = Vector2(5, 1089)
+position = Vector2(0, 1080)
 
 [node name="Tile2" parent="." instance=ExtResource("7_vw8o2")]
-position = Vector2(-1869, 1094)
+position = Vector2(-1920, 1080)
 
 [node name="Tile3" parent="." instance=ExtResource("7_vw8o2")]
-position = Vector2(1918, 1084)
+position = Vector2(1920, 1080)
 
 [node name="Drone" parent="." node_paths=PackedStringArray("world") instance=ExtResource("4_kgkqh")]
 z_index = 1

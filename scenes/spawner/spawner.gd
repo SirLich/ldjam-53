@@ -4,6 +4,7 @@ extends Marker2D
 @export var chance : float
 
 func _ready():
-	if randf() < chance:
-		var new_scene = to_spawn.pick_random().instantiate()
-		add_child(new_scene)
+	if not get_owner().disable_spawns:
+		if randf() < chance:
+			var new_scene = to_spawn.pick_random().instantiate()
+			add_child(new_scene)

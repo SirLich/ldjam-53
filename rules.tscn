@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d1espb6eht8fm" path="res://rule.tscn" id="3_7qont"]
 [ext_resource type="Texture2D" uid="uid://boatsuxj6acxe" path="res://assets/package_pickup.png" id="3_w6g61"]
 [ext_resource type="Texture2D" uid="uid://orulf3trderm" path="res://assets/back_button_selected.png" id="3_x4rbj"]
-[ext_resource type="Texture2D" uid="uid://b2dpuedv0ao3a" path="res://assets/battery.png" id="4_iiie4"]
+[ext_resource type="Texture2D" uid="uid://dxrcmy5n3ujpj" path="res://scenes/drone/drone.png" id="4_hvkxd"]
 [ext_resource type="Texture2D" uid="uid://onsjqv8qboos" path="res://assets/floating_battery.png" id="4_qiif4"]
 [ext_resource type="Texture2D" uid="uid://dui4bu2tstwhu" path="res://scenes/pill/pill.png" id="4_wqf7j"]
 [ext_resource type="Texture2D" uid="uid://bxw1dkwofoorv" path="res://assets/package_icon.png" id="5_yq7ib"]
@@ -22,51 +22,117 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b7c8v")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
 offset_right = 40.0
-offset_bottom = 752.0
+offset_bottom = 40.0
 
-[node name="Points" parent="VBoxContainer" instance=ExtResource("3_7qont")]
-layout_mode = 2
-text = "Get points by collecting and depositing packages."
-icon = ExtResource("4_wqf7j")
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 29.0
+offset_right = 319.0
+offset_bottom = 101.0
+theme_override_font_sizes/font_size = 50
+text = "CONTROLLS"
 
-[node name="Packages" parent="VBoxContainer" instance=ExtResource("3_7qont")]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 64.0
+offset_right = 65.0
+offset_bottom = 816.0
+
+[node name="Boost" parent="Control/VBoxContainer" instance=ExtResource("3_7qont")]
 layout_mode = 2
-text = "Use SPACEBAR to drop packages on the target."
+text = "'LEFT CLICK' to boost."
+icon = ExtResource("4_qiif4")
+
+[node name="Package" parent="Control/VBoxContainer" instance=ExtResource("3_7qont")]
+layout_mode = 2
+text = "'SPACEBAR' to drop packages on the target."
 icon = ExtResource("5_yq7ib")
 
-[node name="Boost" parent="VBoxContainer" instance=ExtResource("3_7qont")]
+[node name="Drone" parent="Control/VBoxContainer" instance=ExtResource("3_7qont")]
 layout_mode = 2
-text = "Boost with 'LEFT CLICK'"
-icon = ExtResource("4_iiie4")
+text = "Point with 'MOUSE' to control direction."
+icon = ExtResource("4_hvkxd")
 
-[node name="Target" parent="VBoxContainer" instance=ExtResource("3_7qont")]
+[node name="Control2" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 405.0
+offset_right = 80.0
+offset_bottom = 445.0
+
+[node name="Label" type="Label" parent="Control2"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -5.0
+offset_right = 286.0
+offset_bottom = 67.0
+theme_override_font_sizes/font_size = 50
+text = "GOAL"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control2"]
+layout_mode = 0
+offset_top = 28.0
+offset_right = 40.0
+offset_bottom = 780.0
+
+[node name="Points" parent="Control2/VBoxContainer" instance=ExtResource("3_7qont")]
+layout_mode = 2
+text = "Get points by collecting pills, and depositing packages on the target."
+icon = ExtResource("4_wqf7j")
+
+[node name="Target" parent="Control2/VBoxContainer" instance=ExtResource("3_7qont")]
 layout_mode = 2
 text = "Here is the target."
 icon = ExtResource("6_lyjge")
 
-[node name="Speed" parent="VBoxContainer" instance=ExtResource("3_7qont")]
-layout_mode = 2
-text = "Watch your speed carefully. Climbing causes lots of drag, so don't get stuck low-and-slow!"
-
-[node name="Battery" parent="VBoxContainer" instance=ExtResource("3_7qont")]
-layout_mode = 2
-text = "Collect to charge boost. There are significantly more batteries the higher you go."
-icon = ExtResource("4_qiif4")
-
-[node name="Packes2" parent="VBoxContainer" instance=ExtResource("3_7qont")]
+[node name="Packes2" parent="Control2/VBoxContainer" instance=ExtResource("3_7qont")]
 layout_mode = 2
 text = "Collect additional packages to keep playing."
 icon = ExtResource("3_w6g61")
 
-[node name="Wind2" parent="VBoxContainer" instance=ExtResource("3_7qont")]
+[node name="Control3" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 862.0
+offset_top = 34.0
+offset_right = 902.0
+offset_bottom = 74.0
+
+[node name="Label" type="Label" parent="Control3"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -5.0
+offset_right = 286.0
+offset_bottom = 67.0
+theme_override_font_sizes/font_size = 50
+text = "STRATEGY"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control3"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 27.0
+offset_right = 44.0
+offset_bottom = 779.0
+
+[node name="Speed" parent="Control3/VBoxContainer" instance=ExtResource("3_7qont")]
+layout_mode = 2
+text = "Climbing causes lots of drag, so don't get stuck low-and-slow!"
+
+[node name="Battery" parent="Control3/VBoxContainer" instance=ExtResource("3_7qont")]
+layout_mode = 2
+text = "There is more energy higher up. Collect speed high, then drop down to deliver packages."
+icon = ExtResource("4_qiif4")
+
+[node name="Wind2" parent="Control3/VBoxContainer" instance=ExtResource("3_7qont")]
 layout_mode = 2
 text = "Wind provides a positive and negative boost."
 icon = ExtResource("10_ks6aw")
 
-[node name="Height" parent="VBoxContainer" instance=ExtResource("3_7qont")]
+[node name="Height" parent="Control3/VBoxContainer" instance=ExtResource("3_7qont")]
 layout_mode = 2
 text = "Don't fly too high or the FAA will remotely shut you down."
 icon = ExtResource("10_feo0f")

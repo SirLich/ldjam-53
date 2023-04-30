@@ -174,14 +174,17 @@ script = ExtResource("15_8vk2l")
 
 [node name="Tile" parent="." instance=ExtResource("7_vw8o2")]
 position = Vector2(0, 1080)
+disable_spawns = true
 metadata/_edit_lock_ = true
 
 [node name="Tile2" parent="." instance=ExtResource("7_vw8o2")]
 position = Vector2(-1920, 1080)
+disable_spawns = true
 metadata/_edit_lock_ = true
 
 [node name="Tile3" parent="." instance=ExtResource("7_vw8o2")]
 position = Vector2(1920, 1080)
+disable_spawns = true
 metadata/_edit_lock_ = true
 
 [node name="Drone" parent="." node_paths=PackedStringArray("world") instance=ExtResource("4_kgkqh")]

@@ -29,5 +29,5 @@ offset_top = 80.0
 offset_right = 397.0
 offset_bottom = 118.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 20
 text = "TEST"

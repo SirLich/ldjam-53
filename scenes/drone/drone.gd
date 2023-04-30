@@ -22,6 +22,7 @@ var speed = 0
 var acceleration = 0 
 var boost = false
 var current_speed = 0
+var drop_delay = false
 
 @onready var no_sound = $NoSound
 
@@ -54,7 +55,7 @@ func get_speed():
 func _input(event):
 	if launched and event.is_action_released("spacebar"):
 		
-		if Global.packages > 0:
+		if Global.packages > 0 and not drop_delay:
 			drop_sound.play()
 			Global.packages -= 1
 			var new_package = package_scene.instantiate() 
@@ -62,6 +63,9 @@ func _input(event):
 			add_sibling(new_package)
 			new_package.side_speed = speed
 			new_package.global_position = global_position
+			drop_delay = true
+			await get_tree().create_timer(1).timeout
+			drop_delay = false
 		else:
 			no_sound.play()
 		
@@ -102,6 +106,10 @@ func _process(delta):
 			Global.battery += 10
 			Global.battery = clamp(Global.battery, 0, 100)
 			battery_sound.play()
+			ar.owner.queue_free()
+			
+		if ar.is_in_group("point"):
+			Global.points += 5
 			ar.owner.queue_free()
 			
 		if ar.is_in_group("pickup"):

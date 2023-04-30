@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://x2oc338rv3ul"]
+[gd_scene load_steps=16 format=3 uid="uid://x2oc338rv3ul"]
 
 [ext_resource type="Script" path="res://scenes/tile/tile.gd" id="1_baxb0"]
 [ext_resource type="PackedScene" uid="uid://d2ilua0e6r550" path="res://scenes/spawner/spawner.tscn" id="2_8am8l"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bwlv4p8vqjknu" path="res://scenes/target/target.tscn" id="5_dbpag"]
 [ext_resource type="Texture2D" uid="uid://dq3od6ekaa1ac" path="res://assets/ground_1.png" id="5_iqcxt"]
 [ext_resource type="PackedScene" uid="uid://duntblnp1g15a" path="res://formation_3.tscn" id="6_72qpr"]
+[ext_resource type="PackedScene" uid="uid://cwmsukelofxwe" path="res://wind_positive.tscn" id="8_u6gkk"]
+[ext_resource type="PackedScene" uid="uid://duqwjk3cc352x" path="res://package_pickup.tscn" id="9_7n708"]
+[ext_resource type="PackedScene" uid="uid://wq6ecnfibeqp" path="res://wind_negative.tscn" id="9_arwwp"]
 
 [sub_resource type="Gradient" id="Gradient_3ur72"]
 colors = PackedColorArray(0.85098, 0.572549, 0.352941, 1, 0.419608, 0.239216, 0.145098, 1)
@@ -58,19 +61,29 @@ texture = ExtResource("5_iqcxt")
 polygon = PackedVector2Array(-4, -16, 271, 0, 642, -2, 1034, -41, 1405, -67, 1613, -59, 1914, -10, 1914, 396, -6, 389)
 
 [node name="Spawner2" parent="." instance=ExtResource("2_8am8l")]
-position = Vector2(410, -1181)
+position = Vector2(446, -1312)
 to_spawn = Array[PackedScene]([ExtResource("4_e4kyq"), ExtResource("5_0lsaf"), ExtResource("6_72qpr")])
 chance = 0.5
 
 [node name="Spawner" parent="." instance=ExtResource("2_8am8l")]
-position = Vector2(1086, -248)
+position = Vector2(1083, -245)
 to_spawn = Array[PackedScene]([ExtResource("3_npa77")])
 chance = 0.2
 
+[node name="Wind" parent="." instance=ExtResource("2_8am8l")]
+position = Vector2(553, -252)
+to_spawn = Array[PackedScene]([ExtResource("8_u6gkk"), ExtResource("9_arwwp")])
+chance = 0.5
+
+[node name="Wind" parent="Wind" instance=ExtResource("2_8am8l")]
+position = Vector2(436, -2771)
+to_spawn = Array[PackedScene]([ExtResource("8_u6gkk"), ExtResource("9_arwwp"), ExtResource("9_arwwp")])
+chance = 0.5
+
 [node name="Target_Location" parent="." instance=ExtResource("2_8am8l")]
 position = Vector2(1473, -82)
-to_spawn = Array[PackedScene]([ExtResource("5_dbpag")])
-chance = 1.0
+to_spawn = Array[PackedScene]([ExtResource("5_dbpag"), ExtResource("9_7n708"), ExtResource("5_dbpag")])
+chance = 0.4
 
 [node name="Spawner3" parent="." instance=ExtResource("2_8am8l")]
 position = Vector2(1537, -1202)
@@ -101,3 +114,18 @@ chance = 0.9
 position = Vector2(1485, -2116)
 to_spawn = Array[PackedScene]([ExtResource("3_npa77")])
 chance = 0.9
+
+[node name="Spawner9" parent="." instance=ExtResource("2_8am8l")]
+position = Vector2(1170, -277)
+to_spawn = Array[PackedScene]([ExtResource("3_npa77")])
+chance = 0.1
+
+[node name="Spawner10" parent="." instance=ExtResource("2_8am8l")]
+position = Vector2(1210, -613)
+to_spawn = Array[PackedScene]([ExtResource("3_npa77")])
+chance = 0.2
+
+[node name="Spawner11" parent="." instance=ExtResource("2_8am8l")]
+position = Vector2(591, -2059)
+to_spawn = Array[PackedScene]([ExtResource("3_npa77")])
+chance = 0.2

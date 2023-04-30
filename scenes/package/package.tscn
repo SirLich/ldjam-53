@@ -122,6 +122,7 @@ _data = {
 radius = 226.374
 
 [node name="Package" type="Node2D"]
+z_index = 2
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_5gtdt")
 

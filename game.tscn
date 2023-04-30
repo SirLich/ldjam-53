@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bt7iua1otrdva"]
+[gd_scene load_steps=19 format=3 uid="uid://bt7iua1otrdva"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_wrd2u"]
 [ext_resource type="Texture2D" uid="uid://btpfx368qioxh" path="res://assets/speedomiter.png" id="2_nwuek"]
@@ -13,8 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://bxw1dkwofoorv" path="res://assets/package_icon.png" id="12_8bskr"]
 [ext_resource type="Texture2D" uid="uid://c3cmnkaslp05y" path="res://assets/heigh_meter_dial.png" id="12_ck1gl"]
 [ext_resource type="Texture2D" uid="uid://bohgkiweh26hj" path="res://assets/battery_progress.png" id="12_xpfe3"]
+[ext_resource type="Script" path="res://package_counter.gd" id="13_4ojdr"]
 [ext_resource type="Script" path="res://hud/HeighDial.gd" id="13_f0bqv"]
 [ext_resource type="Script" path="res://TextureProgressBar.gd" id="13_qwlgw"]
+[ext_resource type="Texture2D" uid="uid://dui4bu2tstwhu" path="res://scenes/pill/pill.png" id="14_d4nlw"]
+[ext_resource type="Script" path="res://Label.gd" id="15_8vk2l"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_wrd2u")
@@ -115,7 +118,7 @@ texture_progress = ExtResource("12_xpfe3")
 texture_progress_offset = Vector2(125, 0)
 script = ExtResource("13_qwlgw")
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Packages" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 386.0
@@ -123,7 +126,7 @@ offset_top = 170.0
 offset_right = 426.0
 offset_bottom = 210.0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Packages"]
 layout_mode = 0
 offset_left = -34.0
 offset_top = -6.0
@@ -132,7 +135,7 @@ offset_bottom = 103.0
 texture = ExtResource("12_8bskr")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/Control"]
+[node name="Label" type="Label" parent="CanvasLayer/Packages"]
 layout_mode = 0
 offset_left = 79.0
 offset_top = -1.0
@@ -140,6 +143,34 @@ offset_right = 157.0
 offset_bottom = 98.0
 theme_override_font_sizes/font_size = 70
 text = "3"
+script = ExtResource("13_4ojdr")
+
+[node name="Points" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 387.0
+offset_top = 303.0
+offset_right = 427.0
+offset_bottom = 343.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Points"]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -6.0
+offset_right = 75.0
+offset_bottom = 103.0
+texture = ExtResource("14_d4nlw")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Points"]
+layout_mode = 0
+offset_left = 79.0
+offset_top = -1.0
+offset_right = 157.0
+offset_bottom = 98.0
+theme_override_font_sizes/font_size = 70
+text = "3"
+script = ExtResource("15_8vk2l")
 
 [node name="Tile" parent="." instance=ExtResource("7_vw8o2")]
 position = Vector2(0, 1080)

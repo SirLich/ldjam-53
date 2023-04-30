@@ -15,7 +15,6 @@ func get_distance():
 	
 func _process(delta):
 	if get_distance() - last_spawn > tile_width:
-		print("SPAWN")
 		last_spawn = get_distance()
 		
 		var copy = load("res://scenes/tile/tile.tscn").instantiate()

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwmsukelofxwe"]
+
+[ext_resource type="PackedScene" uid="uid://bfqusm5uvcmpn" path="res://wind.tscn" id="1_yo2lt"]
+
+[node name="Wind" instance=ExtResource("1_yo2lt")]
+
+[node name="Area2D" parent="." index="1" groups=["wind_positive"]]

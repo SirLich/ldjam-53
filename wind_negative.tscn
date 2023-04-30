@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://wq6ecnfibeqp"]
+
+[ext_resource type="PackedScene" uid="uid://bfqusm5uvcmpn" path="res://wind.tscn" id="1_x5o30"]
+
+[node name="Wind" instance=ExtResource("1_x5o30")]
+rotation = 3.14159
+
+[node name="Area2D" parent="." index="1" groups=["wind_negative"]]
+
+[node name="CollisionShape2D" parent="Area2D" index="0" groups=["wind_negative"]]

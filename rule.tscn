@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1espb6eht8fm"]
+
+[ext_resource type="Script" path="res://Rule.gd" id="1_dmbg2"]
+[ext_resource type="Texture2D" uid="uid://btpfx368qioxh" path="res://assets/speedomiter.png" id="2_rjsva"]
+
+[node name="Rule" type="Control"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_dmbg2")
+text = "Test"
+icon = ExtResource("2_rjsva")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 29.0
+offset_right = 131.0
+offset_bottom = 137.0
+texture = ExtResource("2_rjsva")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 80.0
+offset_right = 397.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "TEST"

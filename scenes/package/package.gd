@@ -4,7 +4,19 @@ extends Node2D
 var side_speed = 0
 var friction = 2000
 
+@onready var area_2d = $Area2D
+
 func _process(delta):
+	
+	for ar in area_2d.get_overlapping_areas():
+		if ar.is_in_group("ground"):
+			Global.points -= 50
+			queue_free()
+			
+		if ar.is_in_group("target"):
+			Global.points += 250
+			queue_free()
+			
 	position.y += fall_speed * delta
 	position.x += side_speed * delta
 	

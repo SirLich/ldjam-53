@@ -8,7 +8,7 @@ height = 298.0
 
 [node name="Target" type="Node2D"]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["target"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["target"]]
 position = Vector2(-9, 45)

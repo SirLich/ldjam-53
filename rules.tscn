@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://xk6e8v310eq8"]
+[gd_scene load_steps=12 format=3 uid="uid://xk6e8v310eq8"]
 
-[ext_resource type="Texture2D" uid="uid://2lt4wvumsq6r" path="res://assets/rules.png" id="1_7fj7p"]
 [ext_resource type="Script" path="res://rules.gd" id="1_b7c8v"]
 [ext_resource type="Texture2D" uid="uid://c34glp2hnyevg" path="res://assets/back_button.png" id="2_jnxf3"]
+[ext_resource type="PackedScene" uid="uid://d1espb6eht8fm" path="res://rule.tscn" id="3_7qont"]
+[ext_resource type="Texture2D" uid="uid://boatsuxj6acxe" path="res://assets/package_pickup.png" id="3_w6g61"]
 [ext_resource type="Texture2D" uid="uid://orulf3trderm" path="res://assets/back_button_selected.png" id="3_x4rbj"]
+[ext_resource type="Texture2D" uid="uid://b2dpuedv0ao3a" path="res://assets/battery.png" id="4_iiie4"]
+[ext_resource type="Texture2D" uid="uid://onsjqv8qboos" path="res://assets/floating_battery.png" id="4_qiif4"]
+[ext_resource type="Texture2D" uid="uid://dui4bu2tstwhu" path="res://scenes/pill/pill.png" id="4_wqf7j"]
+[ext_resource type="Texture2D" uid="uid://bxw1dkwofoorv" path="res://assets/package_icon.png" id="5_yq7ib"]
+[ext_resource type="Texture2D" uid="uid://b1xexggxkheol" path="res://assets/target.png" id="6_lyjge"]
+[ext_resource type="Texture2D" uid="uid://doh747oe53rpj" path="res://assets/wind_frame_one.png" id="10_ks6aw"]
 
 [node name="Rules" type="Control"]
 layout_mode = 3
@@ -14,11 +21,54 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b7c8v")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_7fj7p")
+offset_bottom = 752.0
+
+[node name="Points" parent="VBoxContainer" instance=ExtResource("3_7qont")]
+layout_mode = 2
+text = "Get points by collecting and depositing packages."
+icon = ExtResource("4_wqf7j")
+
+[node name="Packages" parent="VBoxContainer" instance=ExtResource("3_7qont")]
+layout_mode = 2
+text = "Use SPACEBAR to drop packages on the target."
+icon = ExtResource("5_yq7ib")
+
+[node name="Target" parent="VBoxContainer" instance=ExtResource("3_7qont")]
+layout_mode = 2
+text = "Here is the target."
+icon = ExtResource("6_lyjge")
+
+[node name="Speed" parent="VBoxContainer" instance=ExtResource("3_7qont")]
+layout_mode = 2
+text = "Watch your speed carefully. Climbing causes lots of drag, so don't get stuck low-and-slow!"
+
+[node name="Boost" parent="VBoxContainer" instance=ExtResource("3_7qont")]
+layout_mode = 2
+text = "Boost with 'LEFT CLICK'"
+icon = ExtResource("4_iiie4")
+
+[node name="Battery" parent="VBoxContainer" instance=ExtResource("3_7qont")]
+layout_mode = 2
+text = "Collect to charge boost. There are significantly more batteries the higher you go."
+icon = ExtResource("4_qiif4")
+
+[node name="Packes2" parent="VBoxContainer" instance=ExtResource("3_7qont")]
+layout_mode = 2
+text = "Collect additional packages to keep playing."
+icon = ExtResource("3_w6g61")
+
+[node name="Wind2" parent="VBoxContainer" instance=ExtResource("3_7qont")]
+layout_mode = 2
+text = "Wind provides a positive and negative boost."
+icon = ExtResource("10_ks6aw")
+
+[node name="Wind" parent="VBoxContainer" instance=ExtResource("3_7qont")]
+layout_mode = 2
+text = "Wind provides a positive and negative boost."
+icon = ExtResource("10_ks6aw")
 
 [node name="BackButton" type="TextureButton" parent="."]
 layout_mode = 0

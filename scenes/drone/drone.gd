@@ -12,6 +12,9 @@ var STALL_GRAVITY = 800
 var BOOST_SPEED = 275
 var BATTERY_DRAIN = 25
 
+var WIND_BOOST = 300
+var NEGATIVE_WIND = 450
+
 # Variables
 var launched = false
 var is_stalling = false
@@ -20,9 +23,12 @@ var acceleration = 0
 var boost = false
 var current_speed = 0
 
+@onready var no_sound = $NoSound
+
 @onready var audio = $AudioStreamPlayer2D
 @onready var cpu_particles_2d = $CPUParticles2D
 @onready var battery_sound = $BatterySound
+@onready var drop_sound = $DropSound
 
 @onready var area = $Area
 @onready var pcam : PhantomCamera2D = $Pcam
@@ -47,11 +53,17 @@ func get_speed():
 	
 func _input(event):
 	if launched and event.is_action_released("spacebar"):
-		var new_package = package_scene.instantiate() 
-		new_package.global_position = global_position
-		add_sibling(new_package)
-		new_package.side_speed = speed
-		new_package.global_position = global_position
+		
+		if Global.packages > 0:
+			drop_sound.play()
+			Global.packages -= 1
+			var new_package = package_scene.instantiate() 
+			new_package.global_position = global_position
+			add_sibling(new_package)
+			new_package.side_speed = speed
+			new_package.global_position = global_position
+		else:
+			no_sound.play()
 		
 	if event.is_action_pressed("left_click"):
 		start_boost()
@@ -72,16 +84,31 @@ func stop_boost():
 		boost = false
 		audio.volume_db = 1
 
+func die():
+	Global.finish()
+	get_tree().change_scene_to_file("res://main_menu.tscn")
+
 
 func _process(delta):
 	for ar in area.get_overlapping_areas():
 		if ar.is_in_group("ground"):
-			print("DEAD")
+			die()
 			
 		if ar.is_in_group("battery"):
 			Global.battery += 10
 			battery_sound.play()
 			ar.owner.queue_free()
+			
+		if ar.is_in_group("pickup"):
+			Global.packages += 3
+			# battery_sound.play()
+			ar.owner.queue_free()
+			
+		if ar.is_in_group("wind_positive"):
+			speed += WIND_BOOST * delta
+		
+		if ar.is_in_group("wind_negative"):
+			speed -= NEGATIVE_WIND * delta
 	
 	if boost:
 		Global.battery -= BATTERY_DRAIN * delta
@@ -119,5 +146,6 @@ func _process(delta):
 		
 		if not is_stalling:
 			rotation = rotation + (ROTATION_SPEED * test * delta)
+			rotation = clamp(rotation, -1.15, 1.15)
 		
 

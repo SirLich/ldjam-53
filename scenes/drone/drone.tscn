@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cwlmal66y0pqe"]
+[gd_scene load_steps=15 format=3 uid="uid://cwlmal66y0pqe"]
 
 [ext_resource type="Script" path="res://scenes/drone/drone.gd" id="1_0dw7l"]
 [ext_resource type="Texture2D" uid="uid://dxrcmy5n3ujpj" path="res://scenes/drone/drone.png" id="1_pqu5d"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_xvibx"]
 [ext_resource type="AudioStream" uid="uid://wrdc3b1wwf2a" path="res://sounds/untitled.wav" id="6_6mjga"]
 [ext_resource type="Texture2D" uid="uid://h851x0yitllx" path="res://assets/smoke.png" id="7_o7422"]
+[ext_resource type="AudioStream" uid="uid://c2vbyymc0pqpa" path="res://sounds/battery.wav" id="8_o8uym"]
+[ext_resource type="AudioStream" uid="uid://bmtpgnc18h1uv" path="res://sounds/battery_2.wav" id="9_utdgr"]
+[ext_resource type="AudioStream" uid="uid://crj0k6lan5two" path="res://sounds/battery_3.wav" id="10_mgasa"]
 
 [sub_resource type="Resource" id="Resource_daekj"]
 script = ExtResource("3_xvibx")
@@ -22,6 +25,15 @@ height = 213.999
 max_value = 2.0
 _data = [Vector2(0.00171233, 0.227273), 0.0, 0.0, 0, 0, Vector2(0.77911, 2), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nyd6b"]
+streams_count = 3
+stream_0/stream = ExtResource("8_o8uym")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("9_utdgr")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("10_mgasa")
+stream_2/weight = 1.0
 
 [node name="Drone" type="Node2D"]
 script = ExtResource("1_0dw7l")
@@ -71,3 +83,6 @@ angular_velocity_max = 503.53
 scale_amount_curve = SubResource("Curve_jqj2r")
 hue_variation_min = -0.09
 hue_variation_max = 0.81
+
+[node name="BatterySound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_nyd6b")

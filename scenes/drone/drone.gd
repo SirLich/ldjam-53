@@ -22,7 +22,8 @@ var current_speed = 0
 
 @onready var audio = $AudioStreamPlayer2D
 @onready var cpu_particles_2d = $CPUParticles2D
-	
+@onready var battery_sound = $BatterySound
+
 @onready var area = $Area
 @onready var pcam : PhantomCamera2D = $Pcam
 @export var package_scene : PackedScene
@@ -79,6 +80,7 @@ func _process(delta):
 			
 		if ar.is_in_group("battery"):
 			Global.battery += 10
+			battery_sound.play()
 			ar.owner.queue_free()
 	
 	if boost:

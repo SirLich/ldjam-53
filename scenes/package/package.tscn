@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://pvqa1wvqcjnb"]
+[gd_scene load_steps=9 format=3 uid="uid://pvqa1wvqcjnb"]
 
 [ext_resource type="Script" path="res://scenes/package/package.gd" id="1_5gtdt"]
 [ext_resource type="Texture2D" uid="uid://bvr843p7uvu6y" path="res://scenes/package/parachute.png" id="1_a0gae"]
@@ -118,33 +118,6 @@ _data = {
 "sway": SubResource("Animation_k172s")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u1v7d"]
-animation = &"Open"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v42bj"]
-animation = &"sway"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_87x64"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kkrrx"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_umlu7"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fl5sy"]
-states/End/position = Vector2(695, 100)
-states/Open/node = SubResource("AnimationNodeAnimation_u1v7d")
-states/Open/position = Vector2(268, 110)
-states/Start/position = Vector2(112, 110)
-states/sway/node = SubResource("AnimationNodeAnimation_v42bj")
-states/sway/position = Vector2(449, 100)
-transitions = ["Start", "Open", SubResource("AnimationNodeStateMachineTransition_87x64"), "Open", "sway", SubResource("AnimationNodeStateMachineTransition_kkrrx"), "sway", "End", SubResource("AnimationNodeStateMachineTransition_umlu7")]
-graph_offset = Vector2(-97, -102)
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_80082"]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_hnpp4"]
 radius = 226.374
 
@@ -155,14 +128,10 @@ script = ExtResource("1_5gtdt")
 [node name="Open" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Visuals")
 autoplay = "Open"
+speed_scale = 0.5
 libraries = {
 "": SubResource("AnimationLibrary_5lcn0")
 }
-
-[node name="AnimationTree" type="AnimationTree" parent="Open"]
-tree_root = SubResource("AnimationNodeStateMachine_fl5sy")
-anim_player = NodePath("..")
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_80082")
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false

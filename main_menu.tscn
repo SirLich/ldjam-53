@@ -49,6 +49,7 @@ texture_normal = ExtResource("2_x6bhq")
 texture_hover = ExtResource("3_2ldja")
 
 [node name="HowToButton" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 69.0
 offset_top = 201.0
 offset_right = 581.0

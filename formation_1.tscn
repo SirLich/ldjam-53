@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://li4eu3mw01"]
+
+[ext_resource type="PackedScene" uid="uid://cltoxd5aa63go" path="res://scenes/pill/pill.tscn" id="1_agmxj"]
+
+[node name="Formation1" type="Node2D"]
+
+[node name="Pill" parent="." instance=ExtResource("1_agmxj")]
+position = Vector2(128, 131)
+
+[node name="Pill3" parent="." instance=ExtResource("1_agmxj")]
+position = Vector2(240, 342)

@@ -1,16 +1,18 @@
 extends Node2D
 class_name Drone
 
-var speed = 0
-var acceleration = 0 
-var max_speed = 900
-var rotation_speed = 1
-var max_rot = 2
-var launched = false
-var friction = 50
+# Constants
+var MAX_SPEED = 900
+var ROTATION_SPEED = 1
+var FRICTION = 50
 var STALL_FRICTION = 500
 var STALL_SPEED = 200
+
+# Variables
+var launched = false
 var is_stalling = false
+var speed = 0
+var acceleration = 0 
 
 @onready var pcam : PhantomCamera2D = $Pcam
 @export var package_scene : PackedScene
@@ -40,20 +42,18 @@ func _input(event):
 func _process(delta):
 	if acceleration:
 		speed = speed * acceleration * delta
-	
-	
 
-		
+
 	if launched:
-		speed -= friction * delta
+		speed -= FRICTION * delta
 		if speed < STALL_SPEED:
 				is_stalling = true
 				speed -= (STALL_FRICTION * delta)
 			
-	speed = clamp(speed, 0, max_speed)
+	speed = clamp(speed, 0, MAX_SPEED)
 	
-	world.translate(get_global_transform().x * delta * speed * -1)
-	world.translate(get_global_transform().y * delta * 9.81)
+	translate(get_global_transform().x * delta * speed)
+	translate(get_global_transform().y * delta * 9.81)
 
 	if launched:
 		var red = global_transform.x
@@ -61,7 +61,7 @@ func _process(delta):
 		var test = red.angle_to(blue)
 		
 		if not is_stalling:
-			rotation = rotation + (rotation_speed * test * delta)
+			rotation = rotation + (ROTATION_SPEED * test * delta)
 		
 		
 

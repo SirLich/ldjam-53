@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bt7iua1otrdva"]
+[gd_scene load_steps=16 format=3 uid="uid://bt7iua1otrdva"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_wrd2u"]
 [ext_resource type="Texture2D" uid="uid://btpfx368qioxh" path="res://assets/speedomiter.png" id="2_nwuek"]
@@ -9,9 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://x2oc338rv3ul" path="res://scenes/tile/tile.tscn" id="7_vw8o2"]
 [ext_resource type="Texture2D" uid="uid://ch24t7mf2q2xy" path="res://assets/dial.png" id="9_2x77h"]
 [ext_resource type="Script" path="res://hud/speed_control.gd" id="9_hkyy8"]
+[ext_resource type="Texture2D" uid="uid://b2dpuedv0ao3a" path="res://assets/battery.png" id="11_1tgmw"]
 [ext_resource type="Texture2D" uid="uid://bi0k7p0moyc78" path="res://assets/heigh_meter.png" id="11_5vc2e"]
 [ext_resource type="Texture2D" uid="uid://c3cmnkaslp05y" path="res://assets/heigh_meter_dial.png" id="12_ck1gl"]
+[ext_resource type="Texture2D" uid="uid://bohgkiweh26hj" path="res://assets/battery_progress.png" id="12_xpfe3"]
 [ext_resource type="Script" path="res://hud/HeighDial.gd" id="13_f0bqv"]
+[ext_resource type="Script" path="res://TextureProgressBar.gd" id="13_qwlgw"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_wrd2u")
@@ -102,17 +105,42 @@ offset_bottom = 715.0
 texture = ExtResource("12_ck1gl")
 script = ExtResource("13_f0bqv")
 
+[node name="Battery" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 37.0
+offset_top = 607.0
+offset_right = 337.0
+offset_bottom = 808.0
+scale = Vector2(0.61, 0.61)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Battery"]
+layout_mode = 0
+offset_left = -22.9508
+offset_top = 13.1147
+offset_right = 489.049
+offset_bottom = 200.115
+value = 25.0
+texture_over = ExtResource("11_1tgmw")
+texture_progress = ExtResource("12_xpfe3")
+texture_progress_offset = Vector2(125, 0)
+script = ExtResource("13_qwlgw")
+
 [node name="Tile" parent="." instance=ExtResource("7_vw8o2")]
 position = Vector2(0, 1080)
+metadata/_edit_lock_ = true
 
 [node name="Tile2" parent="." instance=ExtResource("7_vw8o2")]
 position = Vector2(-1920, 1080)
+metadata/_edit_lock_ = true
 
 [node name="Tile3" parent="." instance=ExtResource("7_vw8o2")]
 position = Vector2(1920, 1080)
+metadata/_edit_lock_ = true
 
 [node name="Drone" parent="." node_paths=PackedStringArray("world") instance=ExtResource("4_kgkqh")]
 z_index = 1
 position = Vector2(125, 957)
 rotation = -0.572468
 world = NodePath("../World")
+metadata/_edit_lock_ = true

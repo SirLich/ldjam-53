@@ -3,20 +3,24 @@ class_name Drone
 
 # Constants
 var ROTATION_SPEED = 1
-var FRICTION = 20
+var FRICTION = 50
 var STALL_FRICTION = 20
 var ANGLE_FRICTION = 150
 var STALL_SPEED = 200
 var GRAVITY = 150
 var STALL_GRAVITY = 800
+var BOOST_SPEED = 500
+var BATTERY_DRAIN = 25
 
 # Variables
 var launched = false
 var is_stalling = false
 var speed = 0
 var acceleration = 0 
-
+var boost = false
 var current_speed = 0
+
+@onready var audio = $AudioStreamPlayer2D
 
 @onready var area = $Area
 @onready var pcam : PhantomCamera2D = $Pcam
@@ -45,17 +49,43 @@ func _input(event):
 		new_package.global_position = global_position
 		world.add_child(new_package)
 		new_package.global_position = global_position
+		
+	if event.is_action_pressed("left_click"):
+		start_boost()
+		
+	if event.is_action_released("left_click"):
+		stop_boost()
+			
+
+func start_boost():
+	if not boost and Global.battery > 0:
+		boost = true
+		audio.volume_db = 15
+	
+func stop_boost():
+	if boost:
+		boost = false
+		audio.volume_db = 1
 	
 func _process(delta):
 	for ar in area.get_overlapping_areas():
 		if ar.is_in_group("ground"):
 			print("DEAD")
 	
+	if boost:
+		Global.battery -= BATTERY_DRAIN * delta
+		
+	if Global.battery < 0:
+		stop_boost()
+		
 	var angle = global_rotation + 0.2
 	if launched:
 		speed -= FRICTION * delta
 		speed += ANGLE_FRICTION * delta * angle
 		
+		if boost:
+			speed += BOOST_SPEED * delta
+			
 		if speed < STALL_SPEED:
 				is_stalling = true
 				GRAVITY = STALL_GRAVITY

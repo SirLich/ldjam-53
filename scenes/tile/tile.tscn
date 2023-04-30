@@ -1,14 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://x2oc338rv3ul"]
+[gd_scene load_steps=11 format=3 uid="uid://x2oc338rv3ul"]
 
 [ext_resource type="Script" path="res://scenes/tile/tile.gd" id="1_baxb0"]
 [ext_resource type="PackedScene" uid="uid://cltoxd5aa63go" path="res://scenes/pill/pill.tscn" id="3_npa77"]
 [ext_resource type="PackedScene" uid="uid://pvqa1wvqcjnb" path="res://scenes/package/package.tscn" id="4_7tyam"]
-[ext_resource type="Texture2D" uid="uid://7xy5jtubvjvr" path="res://assets/ground.png" id="5_m237g"]
+[ext_resource type="Texture2D" uid="uid://dq3od6ekaa1ac" path="res://assets/ground_1.png" id="5_iqcxt"]
 [ext_resource type="Texture2D" uid="uid://b1xexggxkheol" path="res://assets/target.png" id="5_yc76t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_etw2t"]
 radius = 250.0
 height = 1570.0
+
+[sub_resource type="Gradient" id="Gradient_1nuv3"]
+colors = PackedColorArray(0.85098, 0.572549, 0.352941, 1, 0.419608, 0.239216, 0.145098, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dmwh8"]
+gradient = SubResource("Gradient_1nuv3")
+height = 100
+fill_to = Vector2(0, 1)
 
 [sub_resource type="Gradient" id="Gradient_3hqvk"]
 offsets = PackedFloat32Array(0, 0.639423, 1)
@@ -49,12 +57,12 @@ position = Vector2(-1560, 1785)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_etw2t")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
 offset_left = -5.0
 offset_top = 6.0
 offset_right = 1918.0
-offset_bottom = 3249.0
-color = Color(0.168627, 0.423529, 0, 1)
+offset_bottom = 1490.0
+texture = SubResource("GradientTexture2D_dmwh8")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -1
@@ -71,4 +79,4 @@ polygon = PackedVector2Array(-4, -16, 281, 1, 671, -24, 1050, -56, 1414, -60, 17
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
 position = Vector2(954, -228)
-texture = ExtResource("5_m237g")
+texture = ExtResource("5_iqcxt")

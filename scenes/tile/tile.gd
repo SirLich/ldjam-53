@@ -9,5 +9,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Global.distance - global_position.x > 4000:
-		queue_free()
+	if not disable_spawns:
+		if Global.distance - global_position.x > 4000:
+			queue_free()

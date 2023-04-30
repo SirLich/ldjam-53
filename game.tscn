@@ -1,12 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://bt7iua1otrdva"]
+[gd_scene load_steps=15 format=3 uid="uid://bt7iua1otrdva"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_wrd2u"]
 [ext_resource type="Script" path="res://ignore_rot.gd" id="2_nm2xj"]
+[ext_resource type="Texture2D" uid="uid://btpfx368qioxh" path="res://assets/speedomiter.png" id="2_nwuek"]
 [ext_resource type="Texture2D" uid="uid://dt54gbixfo5mx" path="res://assets/cloud.png" id="2_t87kk"]
 [ext_resource type="PackedScene" uid="uid://d1mgyajq1ivqs" path="res://scenes/launcher/launcher.tscn" id="4_gdlv2"]
 [ext_resource type="PackedScene" uid="uid://cwlmal66y0pqe" path="res://scenes/drone/drone.tscn" id="4_kgkqh"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_jg1gd"]
 [ext_resource type="PackedScene" uid="uid://x2oc338rv3ul" path="res://scenes/tile/tile.tscn" id="7_vw8o2"]
+[ext_resource type="Texture2D" uid="uid://ch24t7mf2q2xy" path="res://assets/dial.png" id="9_2x77h"]
+[ext_resource type="Script" path="res://hud/speed_control.gd" id="9_hkyy8"]
 
 [sub_resource type="Gradient" id="Gradient_irhyx"]
 colors = PackedColorArray(0.00147889, 0.0905844, 0.475441, 1, 0.0874125, 0.698596, 0.809496, 1)
@@ -75,3 +78,38 @@ position = Vector2(-1920, 0)
 
 [node name="Tile3" parent="World" instance=ExtResource("7_vw8o2")]
 position = Vector2(1920, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Speedomiter" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Dash" type="TextureRect" parent="CanvasLayer/Speedomiter"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -93.0
+offset_right = 280.0
+offset_bottom = 172.0
+texture = ExtResource("2_nwuek")
+expand_mode = 1
+
+[node name="Control" type="Control" parent="CanvasLayer/Speedomiter"]
+anchors_preset = 0
+offset_left = 148.0
+offset_top = 155.0
+offset_right = 188.0
+offset_bottom = 195.0
+rotation = 0.00428041
+script = ExtResource("9_hkyy8")
+
+[node name="Dial" type="TextureRect" parent="CanvasLayer/Speedomiter/Control"]
+layout_mode = 0
+offset_left = -124.0
+offset_top = -249.0
+offset_right = 141.0
+offset_bottom = 16.0
+texture = ExtResource("9_2x77h")
+expand_mode = 1

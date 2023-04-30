@@ -1,8 +1,8 @@
 extends Node2D
 
 @export var fall_speed = 300
-var side_speed = 500
-var friction = 500
+var side_speed = 0
+var friction = 1000
 
 func _process(delta):
 	position.y += fall_speed * delta

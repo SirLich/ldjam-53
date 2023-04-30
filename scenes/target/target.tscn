@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwlv4p8vqjknu"]
+
+[ext_resource type="Texture2D" uid="uid://b1xexggxkheol" path="res://assets/target.png" id="1_5i5qa"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4owy6"]
+radius = 46.0
+height = 298.0
+
+[node name="Target" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["target"]]
+position = Vector2(-9, 45)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4owy6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5i5qa")

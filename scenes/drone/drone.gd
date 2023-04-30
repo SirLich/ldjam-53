@@ -9,7 +9,7 @@ var ANGLE_FRICTION = 150
 var STALL_SPEED = 200
 var GRAVITY = 150
 var STALL_GRAVITY = 800
-var BOOST_SPEED = 175
+var BOOST_SPEED = 275
 var BATTERY_DRAIN = 25
 
 # Variables
@@ -48,7 +48,8 @@ func _input(event):
 	if launched and event.is_action_released("spacebar"):
 		var new_package = package_scene.instantiate() 
 		new_package.global_position = global_position
-		world.add_child(new_package)
+		add_sibling(new_package)
+		new_package.side_speed = speed
 		new_package.global_position = global_position
 		
 	if event.is_action_pressed("left_click"):
@@ -59,7 +60,7 @@ func _input(event):
 			
 
 func start_boost():
-	if not boost and Global.battery > 0:
+	if not boost and launched and Global.battery > 0:
 		boost = true
 		audio.volume_db = 15
 		cpu_particles_2d.emitting = true

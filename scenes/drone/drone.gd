@@ -18,12 +18,14 @@ var acceleration = 0
 
 var current_speed = 0
 
+@onready var area = $Area
 @onready var pcam : PhantomCamera2D = $Pcam
 @export var package_scene : PackedScene
 @export var world : Node2D
 
 func launch():
 	speed = 1200
+	$ AudioStreamPlayer2D.play()
 	
 	await get_tree().create_timer(0.7).timeout
 	pcam.set_priority(2)
@@ -45,6 +47,9 @@ func _input(event):
 		new_package.global_position = global_position
 	
 func _process(delta):
+	for ar in area.get_overlapping_areas():
+		if ar.is_in_group("ground"):
+			print("DEAD")
 	
 	var angle = global_rotation + 0.2
 	if launched:

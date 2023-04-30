@@ -2,10 +2,10 @@ extends Sprite2D
 
 @export var gradient : GradientTexture1D
 @export var world : Node2D
-var range = 5
+var range = 1
 
 func height_percentage():
-	return clamp(-world.global_position.y / Global.MAX_HEIGHT, 0, 1)
+	return clamp(Global.get_height() / Global.MAX_HEIGHT, 0, 1)
 	
 	
 func _process(delta):

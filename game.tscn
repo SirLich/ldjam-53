@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://bt7iua1otrdva"]
+[gd_scene load_steps=13 format=3 uid="uid://bt7iua1otrdva"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_wrd2u"]
-[ext_resource type="Script" path="res://ignore_rot.gd" id="2_nm2xj"]
 [ext_resource type="Texture2D" uid="uid://btpfx368qioxh" path="res://assets/speedomiter.png" id="2_nwuek"]
 [ext_resource type="Texture2D" uid="uid://dt54gbixfo5mx" path="res://assets/cloud.png" id="2_t87kk"]
 [ext_resource type="PackedScene" uid="uid://d1mgyajq1ivqs" path="res://scenes/launcher/launcher.tscn" id="4_gdlv2"]
@@ -14,35 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://c3cmnkaslp05y" path="res://assets/heigh_meter_dial.png" id="12_ck1gl"]
 [ext_resource type="Script" path="res://hud/HeighDial.gd" id="13_f0bqv"]
 
-[sub_resource type="Gradient" id="Gradient_irhyx"]
-colors = PackedColorArray(0.00147889, 0.0905844, 0.475441, 1, 0.0874125, 0.698596, 0.809496, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3uf1v"]
-gradient = SubResource("Gradient_irhyx")
-width = 256
-height = 500
-fill_from = Vector2(0.490385, 0)
-fill_to = Vector2(0.53125, 1)
-
-[sub_resource type="Gradient" id="Gradient_3edvj"]
-colors = PackedColorArray(0.0633781, 0.740959, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_bqhyj"]
-gradient = SubResource("Gradient_3edvj")
-width = 5
-
 [node name="Game" type="Node2D"]
 script = ExtResource("1_wrd2u")
 tile_length = 1920.0
-
-[node name="Background" type="Sprite2D" parent="." node_paths=PackedStringArray("world")]
-visible = false
-position = Vector2(276, 818)
-scale = Vector2(9.28929, 3.18381)
-texture = SubResource("GradientTexture2D_3uf1v")
-script = ExtResource("2_nm2xj")
-gradient = SubResource("GradientTexture1D_bqhyj")
-world = NodePath("../World")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(276, 818)
@@ -51,14 +24,8 @@ position = Vector2(276, 818)
 script = ExtResource("5_jg1gd")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Camera2D"]
-remote_path = NodePath("../../Background")
 update_rotation = false
 update_scale = false
-
-[node name="Drone" parent="." node_paths=PackedStringArray("world") instance=ExtResource("4_kgkqh")]
-position = Vector2(125, 957)
-rotation = -0.572468
-world = NodePath("../World")
 
 [node name="World" type="Node2D" parent="."]
 
@@ -143,3 +110,9 @@ position = Vector2(-1869, 1094)
 
 [node name="Tile3" parent="." instance=ExtResource("7_vw8o2")]
 position = Vector2(1918, 1084)
+
+[node name="Drone" parent="." node_paths=PackedStringArray("world") instance=ExtResource("4_kgkqh")]
+z_index = 1
+position = Vector2(125, 957)
+rotation = -0.572468
+world = NodePath("../World")

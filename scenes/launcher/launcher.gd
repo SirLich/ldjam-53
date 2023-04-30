@@ -6,6 +6,7 @@ var is_ready = true
 func _input(event):
 	if is_ready and event.is_action("spacebar"):
 		is_ready = false
+		$AudioStreamPlayer2D.play()
 		drone.launch()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

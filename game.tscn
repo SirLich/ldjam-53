@@ -34,6 +34,7 @@ update_rotation = false
 update_scale = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Speedomiter" type="Control" parent="CanvasLayer"]
 layout_mode = 3
